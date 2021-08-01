@@ -6,10 +6,10 @@ const router = Router();
 import * as authCtrl from "../controllers/auth.controller";
 
 router.post("/signup", async (req, res, next) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, roles } = req.body;
 
   try {
-    const userCreated = await authCtrl.signUp(username, email, password);
+    const userCreated = await authCtrl.signUp(username, email, password, roles);
     res.status(201).json({ token: userCreated });
   } catch (err) {
     next(err);

@@ -1,6 +1,8 @@
-require("dotenv").config();
+import { config } from "dotenv";
 
-const config = {
+config();
+
+export default {
   dev: process.env.NODE_ENV !== "production",
   port: process.env.PORT || 3000,
   dbUser: process.env.MONGO_USER,
@@ -10,5 +12,3 @@ const config = {
   dbPort: process.env.MONGO_PORT,
   dbConnection: process.env.MONGO_CONNECTION,
 };
-
-export default { config };

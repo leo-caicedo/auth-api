@@ -1,3 +1,6 @@
+// models
+import Product from "../models/Product";
+
 export const getProducts = () => {};
 export const getProduct = () => {};
 export const createProduct = () => {};

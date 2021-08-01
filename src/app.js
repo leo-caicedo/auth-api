@@ -3,6 +3,7 @@ import morgan from "morgan";
 
 // required routes
 import productsRoutes from "./routes/products.routes";
+import apthRoutes from "./routes/auth.routes";
 
 const createApp = () => {
   const app = express();
@@ -15,6 +16,7 @@ const createApp = () => {
 
   // routes
   app.use("/api/products", productsRoutes);
+  app.use("/api/auth", apthRoutes);
 
   return app;
 };

@@ -5,24 +5,58 @@ const router = Router();
 // controller
 import * as productsCtrl from "../controllers/products.controller";
 
-router.get("/", (req, res, next) => {
-  // get products
+router.get("/", async (req, res, next) => {
+  try {
+    const products = await productsCtrl.getProducts();
+    res.json(products);
+  } catch (err) {
+    next(err);
+  }
 });
 
-router.get("/:id", (req, res, next) => {
-  // get product
+router.get("/:id", async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    const product = await productsCtrl.getProduct(id);
+    res.json(product);
+  } catch (err) {
+    next(err);
+  }
 });
 
-router.post("/:id", (req, res, next) => {
-  // get product
+router.post("/", async (req, res, next) => {
+  const { body: data } = req;
+
+  try {
+    const productCreated = await productsCtrl.createProduct(data);
+    res.status(201).json(productCreated);
+  } catch (err) {
+    next(err);
+  }
 });
 
-router.put("/:id", (req, res, next) => {
-  // get product
+router.put("/:id", async (req, res, next) => {
+  const { id } = req.params;
+  const { body: data } = req;
+
+  try {
+    const productUpdated = await productsCtrl.updateProduct(id, data);
+    res.json(productUpdated);
+  } catch (err) {
+    next(err);
+  }
 });
 
-router.delete("/:id", (req, res, next) => {
-  // get product
+router.delete("/:id", async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    const productRemoved = await productsCtrl.deleteProduct(id);
+    res.send(productRemoved);
+  } catch (err) {
+    next(err);
+  }
 });
 
 export default router;

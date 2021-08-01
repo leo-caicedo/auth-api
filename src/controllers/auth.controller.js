@@ -1,14 +1,20 @@
+import jwt from "jsonwebtoken";
+
+import config from "../config";
 // models
 import User from "../models/User";
 
-export const singUp = async (username, email, password) => {
+export const signUp = async (username, email, password) => {
   const userCreated = await new User({
     username,
     email,
-    password: User.encryptPassword(password),
+    password: await User.encryptPassword(password),
   });
   await userCreated.save();
+  const token = jwt.sign({ id: userCreated._id }, config.SECRET, {
+    expiresIn: 3600, // one hour
+  });
 
-  return userCreated;
+  return token;
 };
-export const singIn = async () => {};
+export const signIn = async () => {};

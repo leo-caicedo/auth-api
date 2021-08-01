@@ -11,4 +11,5 @@ export default {
   dbName: process.env.MONGO_DB_NAME,
   dbPort: process.env.MONGO_PORT,
   dbConnection: process.env.MONGO_CONNECTION,
+  SECRET: process.env.SECRET,
 };

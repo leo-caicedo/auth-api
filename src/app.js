@@ -5,7 +5,8 @@ import morgan from "morgan";
 import { createRoles } from "./libs/setup";
 // required routes
 import productsRoutes from "./routes/products.routes";
-import apthRoutes from "./routes/auth.routes";
+import usersRoutes from "./routes/users.routes";
+import authRoutes from "./routes/auth.routes";
 
 const createApp = () => {
   const app = express();
@@ -19,7 +20,8 @@ const createApp = () => {
 
   // routes
   app.use("/api/products", productsRoutes);
-  app.use("/api/auth", apthRoutes);
+  app.use("/api/users", usersRoutes);
+  app.use("/api/auth", authRoutes);
 
   return app;
 };
